@@ -1,0 +1,38 @@
+{
+  "name": "start-end",
+  "description": "Special DSL for build *ml structured data.",
+  "main": "src/index.js",
+  "repository": "https://github.com/revonia/start-end.git",
+  "author": "J.Wang",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "run-s lint && mocha --recursive --require @babel/register --require babel-polyfill",
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "build:dev": "cross-env NODE_ENV=dev rollup -c",
+    "precommit": "run-s build build:dev test"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "mocha": "^6.0.2",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^1.7.4",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.2",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-uglify": "^6.0.2"
+  },
+  "dependencies": {}
+}
