@@ -1,8 +1,8 @@
 import Part from './part'
 import { bindArgs, isFunction, createUniqueObject } from './utils'
 
-const propTypePart = createUniqueObject('prop')
-const textTypePart = createUniqueObject('text')
+const attrTypePart = createUniqueObject('attr')
+const contentTypePart = createUniqueObject('content')
 
 function pushStartTag ({ dsl }, tag) {
   if (!dsl.startTagStack) {
@@ -52,11 +52,11 @@ export class CommaDsl {
     this.TagCollection = TagCollection
     this.startTokens = null
     this.endTokens = null
-    this.textPart = null
-    this.propPart = null
+    this.contentPart = null
+    this.attrPart = null
   }
 
-  get o () {
+  get startTag () {
     if (!this.startTokens) {
       this.startTokens = new this.TagCollection(pushStartTag)
       this.startTokens.dsl = this
@@ -64,7 +64,7 @@ export class CommaDsl {
     return this.startTokens
   }
 
-  get x () {
+  get endTag () {
     if (!this.endTokens) {
       this.endTokens = new this.TagCollection(pushEndTag)
       this.endTokens.dsl = this
@@ -72,25 +72,25 @@ export class CommaDsl {
     return this.endTokens
   }
 
-  get prop () {
-    if (!this.propPart) {
-      this.propPart = bindArgs(pushPart, this, propTypePart)
+  get attr () {
+    if (!this.attrPart) {
+      this.attrPart = bindArgs(pushPart, this, attrTypePart)
     }
-    return this.propPart
+    return this.attrPart
   }
 
-  get text () {
-    if (!this.textPart) {
-      this.textPart = bindArgs(pushPart, this, textTypePart)
+  get content () {
+    if (!this.contentPart) {
+      this.contentPart = bindArgs(pushPart, this, contentTypePart)
     }
-    return this.textPart
+    return this.contentPart
   }
 
-  static isProp (part) {
-    return part.type === propTypePart
+  static isAttr (part) {
+    return part.type === attrTypePart
   }
 
-  static isText (part) {
-    return part.type === textTypePart
+  static isContent (part) {
+    return part.type === contentTypePart
   }
 }

@@ -10,7 +10,7 @@
     "test": "run-s lint && mocha --recursive --require @babel/register --require babel-polyfill",
     "build": "cross-env NODE_ENV=production rollup -c",
     "build:dev": "cross-env NODE_ENV=dev rollup -c",
-    "precommit": "run-s build build:dev test"
+    "precommit": "run-s test build build:dev"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
