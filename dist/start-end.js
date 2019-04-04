@@ -120,8 +120,8 @@
     this.type = type;
   };
 
-  var propTypePart = createUniqueObject('prop');
-  var textTypePart = createUniqueObject('text');
+  var attrTypePart = createUniqueObject('attr');
+  var contentTypePart = createUniqueObject('content');
 
   function pushStartTag(_ref, tag) {
     var dsl = _ref.dsl;
@@ -186,20 +186,20 @@
       this.TagCollection = TagCollection;
       this.startTokens = null;
       this.endTokens = null;
-      this.textPart = null;
-      this.propPart = null;
+      this.contentPart = null;
+      this.attrPart = null;
     }
 
-    CommaDsl.isProp = function isProp(part) {
-      return part.type === propTypePart;
+    CommaDsl.isAttr = function isAttr(part) {
+      return part.type === attrTypePart;
     };
 
-    CommaDsl.isText = function isText(part) {
-      return part.type === textTypePart;
+    CommaDsl.isContent = function isContent(part) {
+      return part.type === contentTypePart;
     };
 
     _createClass(CommaDsl, [{
-      key: "o",
+      key: "startTag",
       get: function get() {
         if (!this.startTokens) {
           this.startTokens = new this.TagCollection(pushStartTag);
@@ -209,7 +209,7 @@
         return this.startTokens;
       }
     }, {
-      key: "x",
+      key: "endTag",
       get: function get() {
         if (!this.endTokens) {
           this.endTokens = new this.TagCollection(pushEndTag);
@@ -219,22 +219,22 @@
         return this.endTokens;
       }
     }, {
-      key: "prop",
+      key: "attr",
       get: function get() {
-        if (!this.propPart) {
-          this.propPart = bindArgs(pushPart, this, propTypePart);
+        if (!this.attrPart) {
+          this.attrPart = bindArgs(pushPart, this, attrTypePart);
         }
 
-        return this.propPart;
+        return this.attrPart;
       }
     }, {
-      key: "text",
+      key: "content",
       get: function get() {
-        if (!this.textPart) {
-          this.textPart = bindArgs(pushPart, this, textTypePart);
+        if (!this.contentPart) {
+          this.contentPart = bindArgs(pushPart, this, contentTypePart);
         }
 
-        return this.textPart;
+        return this.contentPart;
       }
     }]);
 
