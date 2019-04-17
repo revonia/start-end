@@ -1,2 +1,2 @@
 # start-end
-Special DSL for build *ml structured data
+Special DSL for build html structured data

@@ -1,6 +1,6 @@
 {
   "name": "start-end",
-  "description": "Special DSL for build *ml structured data.",
+  "description": "Special DSL for build html structured data.",
   "main": "src/index.js",
   "repository": "https://github.com/revonia/start-end.git",
   "author": "J.Wang",
